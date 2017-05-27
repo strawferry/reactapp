@@ -44,6 +44,13 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
     { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {};
 
+
+// // ant  使用Icon需要
+// const svgDirs = [
+//     require.resolve('antd-mobile').replace(/warn\.js$/, ''), // 1. 属于 antd-mobile 内置 svg 文件
+//     // path.resolve(__dirname, 'src/my-project-svg-foler'),  // 2. 自己私人的 svg 存放目录
+// ];
+
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
@@ -74,7 +81,7 @@ module.exports = {
     // We placed these paths second because we want `node_modules` to "win"
     // if there are any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
-    modules: ['node_modules', paths.appNodeModules].concat(
+    modules: ['node_modules', path.join(__dirname, '../node_modules'), paths.appNodeModules].concat(
       // It is guaranteed to exist because we tweak it in `env.js`
       process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
     ),
@@ -82,7 +89,7 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: ['.web.js', '.js', '.json', '.jsx', '.css', '.less'],
     alias: {
       
       // Support React Native Web
@@ -162,6 +169,11 @@ module.exports = {
         loader: require.resolve('babel-loader'),
         
       },
+        // {
+        //     test: /\.(svg)$/i,
+        //     use: ['svg-sprite-loader'],
+        //     include: svgDirs, // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
+        // },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -204,6 +216,8 @@ module.exports = {
                         ],
                         flexbox: 'no-2009',
                       }),
+                        require('precss'),
+                        pxtorem({rootValue: 100, propWhiteList: [],})
                     ],
                   },
                 },

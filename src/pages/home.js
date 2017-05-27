@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setTest } from '../actions/home';
+import { Button, Icon } from 'antd-mobile';
 
 class home extends Component {
 
@@ -20,7 +21,10 @@ class home extends Component {
     render() {
         return(
             <div>
+
+                <Button>Start</Button>
                 home
+                <Icon type="check" size="lg"/>
                 <div onClick={()=>{
                     this.props.actions.setTest('dispatch 设置');
                 }}>setStr: {this.props.home.str}</div>
