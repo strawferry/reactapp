@@ -27,6 +27,39 @@
         // 设置基础字体大小及字体缩放比例
         flex(100, 1);
     </script>
+    <script type="text/javascript">
+        function browserRedirect() {
+            var sUserAgent= navigator.userAgent.toLowerCase();
+            var bIsIpad= sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs= sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsMidp= sUserAgent.match(/midp/i) == "midp";
+            var bIsUc7= sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+            var bIsUc= sUserAgent.match(/ucweb/i) == "ucweb";
+            var bIsAndroid= sUserAgent.match(/android/i) == "android";
+            var bIsCE= sUserAgent.match(/windows ce/i) == "windows ce";
+            var bIsWM= sUserAgent.match(/windows mobile/i) == "windows mobile";
+            var pathname = window.location.pathname;
+            if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+                console.log('sj');
+                if (pathname.substr(0,4) === '/wap'){
+                    console.log('sj has wap');
+                }else{
+                    console.log('sj no wap');
+                    window.location.href= '/wap' + pathname ;
+                }
+            } else {
+                console.log('dn');
+                if (pathname.substr(0,4) === '/wap'){
+                    window.location.href= pathname.substr(4) ;
+                    console.log('pc has wap');
+                }else{
+                    console.log('pc no wap');
+                }
+
+            }
+        }
+        browserRedirect();
+    </script>
   </head>
   <body>
     <noscript>
