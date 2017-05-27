@@ -5,7 +5,7 @@ import Me from './pages/me';
 
 
 import React from 'react';
-import { Route, HashRouter as Router } from 'react-router-dom';
+import { Route,  BrowserRouter } from 'react-router-dom';
 // import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import createHistory from 'history/createBrowserHistory';
 const history = createHistory();
@@ -18,7 +18,7 @@ export default class AppContainer extends React.Component {
     
   render() {
       return (
-          <Router history={history}>
+          <BrowserRouter history={history}>
               {/*<Route render={({ location }) => {*/}
                   {/*console.log('location.pathname: ', location);*/}
                   {/*let cls = 'normal';*/}
@@ -46,7 +46,7 @@ export default class AppContainer extends React.Component {
               <Route  exact path="/" component={Home} />
               <Route  path="/me" component={Me} />
               </div>
-          </Router>
+          </BrowserRouter>
     );
   }
 }

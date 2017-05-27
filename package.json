@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://strawferry.github.io/reactapp/",
   "dependencies": {
+    "antd": "^2.10.2",
     "antd-mobile": "^1.1.3",
     "fastclick": "^1.0.6",
     "history": "^4.6.1",
